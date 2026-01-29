@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Pilgrim Investment Platform</title>
+    <link rel="stylesheet" href="banking.css">
+    <link rel="stylesheet" href="investment.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="bank-header">
+        <div class="bank-logo">
+            <img src="IMG_20251020_084318.jpg" alt="Pilgrim Investment">
+            <span>Pilgrim Investment</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="login.html" class="nav-link">Login</a>
+        </nav>
+    </div>
+
+    <div class="form-container" style="max-width: 700px;">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Investment Registration</h2>
+        
+        <div class="alert alert-info" style="margin-bottom: 2rem;">
+            <strong>Important:</strong> Please ensure all information provided is accurate. Your investment account will be generated upon successful registration.
+        </div>
+
+        <form id="investmentRegisterForm">
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" id="invFullName" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" id="invEmail" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" id="invPhone" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" class="form-input" id="invDOB" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Gender</label>
+                <select class="form-select" id="invGender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Address</label>
+                <textarea class="form-input" id="invAddress" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-input" id="invUsername" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input" id="invPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-input" id="invConfirmPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Investment Type</label>
+                <select class="form-select" id="invType" required>
+                    <option value="">Select Investment Type</option>
+                    <option value="investment">Investment</option>
+                    <option value="shares">Buy Shares</option>
+                    <option value="both">Both Investment and Shares</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Investment Amount (USD)</label>
+                <input type="number" class="form-input" id="invAmount" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Number of Shares</label>
+                <input type="number" class="form-input" id="invShares" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Upload Passport Photograph</label>
+                <input type="file" class="form-input" id="invPassport" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Upload ID Document (Choose one)</label>
+                <select class="form-select" id="invIDType" required>
+                    <option value="">Select ID Type</option>
+                    <option value="driver-license">Driver's License</option>
+                    <option value="passport">International Passport</option>
+                    <option value="voter-card">Voter Card</option>
+                    <option value="country-id">Country Identity Card</option>
+                    <option value="work-id">Work ID</option>
+                    <option value="bank-statement">Bank Statement</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Upload Selected ID Document</label>
+                <input type="file" class="form-input" id="invIDDocument" accept="image/*,application/pdf" required>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" required>
+                    I agree to the Investment Terms and Conditions and understand that this is a 10-year share commitment
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Complete Registration</button>
+        </form>
+
+        <p style="text-align: center; margin-top: 1rem;">
+            Already have an investment account? <a href="login.html" style="color: var(--primary-color);">Login here</a>
+        </p>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('investmentRegisterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('invPassword').value;
+            const confirmPassword = document.getElementById('invConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            const userData = {
+                fullName: document.getElementById('invFullName').value,
+                email: document.getElementById('invEmail').value,
+                phone: document.getElementById('invPhone').value,
+                dob: document.getElementById('invDOB').value,
+                gender: document.getElementById('invGender').value,
+                address: document.getElementById('invAddress').value,
+                username: document.getElementById('invUsername').value,
+                password: password,
+                investmentType: document.getElementById('invType').value,
+                investmentAmount: parseFloat(document.getElementById('invAmount').value),
+                numberOfShares: parseInt(document.getElementById('invShares').value),
+                accountNumber: generateAccountNumber(),
+                serialNumber: generateSerialNumber(),
+                dateRegistered: new Date().toISOString(),
+                status: 'pending',
+                sharesOwned: parseInt(document.getElementById('invShares').value),
+                totalInvestment: parseFloat(document.getElementById('invAmount').value),
+                yearlyInterest: 0,
+                monthlyDividends: [],
+                transactions: []
+            };
+
+            // Save to localStorage
+            localStorage.setItem('investmentUser_' + userData.username, JSON.stringify(userData));
+            
+            alert('Registration successful! Your Investment Account Number is: ' + userData.accountNumber + '\n\nSerial Number: ' + userData.serialNumber + '\n\nPlease wait for admin approval.');
+            window.location.href = 'login.html';
+        });
+
+        function generateAccountNumber() {
+            return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        }
+
+        function generateSerialNumber() {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numbers = '0123456789';
+            let serial = '';
+            for (let i = 0; i < 2; i++) {
+                serial += letters.charAt(Math.floor(Math.random() * letters.length));
+            }
+            for (let i = 0; i < 8; i++) {
+                serial += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            }
+            return serial;
+        }
+    </script>
+</body>
+</html>

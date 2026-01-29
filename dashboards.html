@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pilgrim Investment Platform</title>
+    <link rel="stylesheet" href="banking.css">
+    <link rel="stylesheet" href="investment.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="bank-header">
+        <div class="bank-logo">
+            <img src="IMG_20251020_084318.jpg" alt="Pilgrim Investment">
+            <span>Pilgrim Investment</span>
+        </div>
+        <nav class="nav-menu">
+            <span style="color: white;">Welcome, <span id="invUserName">User</span></span>
+            <a href="#" onclick="logout()" class="nav-link">Logout</a>
+        </nav>
+    </div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="sidebar-item active" onclick="showSection('inv-overview')">Overview</li>
+                <li class="sidebar-item" onclick="showSection('inv-details')">Investment Details</li>
+                <li class="sidebar-item" onclick="showSection('inv-dividends')">Dividends</li>
+                <li class="sidebar-item" onclick="showSection('inv-transactions')">Transactions</li>
+                <li class="sidebar-item" onclick="showSection('inv-contact')">Contact Admin</li>
+                <li class="sidebar-item" onclick="showSection('inv-profile')">My Profile</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="inv-overview" class="investment-section">
+                <h2>Investment Dashboard</h2>
+                <div class="alert alert-success" style="margin-top: 2rem;">
+                    <strong>Congratulations!</strong> Your investment account has been created successfully.
+                </div>
+
+                <div class="grid-3" style="margin-top: 2rem;">
+                    <div class="wallet-card">
+                        <div class="wallet-label">Total Investment</div>
+                        <div class="wallet-balance" id="totalInvestment">$0.00</div>
+                        <div>USD</div>
+                    </div>
+                    <div class="wallet-card" style="background: linear-gradient(135deg, #4caf50, #8bc34a);">
+                        <div class="wallet-label">Shares Owned</div>
+                        <div class="wallet-balance" id="sharesOwned">0</div>
+                        <div>Pilgrim Shares</div>
+                    </div>
+                    <div class="wallet-card" style="background: linear-gradient(135deg, #ff9800, #ff5722);">
+                        <div class="wallet-label">Total Dividends</div>
+                        <div class="wallet-balance" id="totalDividends">$0.00</div>
+                        <div>Accumulated</div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Account Information</div>
+                    <div class="card-body">
+                        <p><strong>Account Number:</strong> <span id="invAccountNumber">-</span></p>
+                        <p><strong>Serial Number:</strong> <span id="invSerialNumber">-</span></p>
+                        <p><strong>Investment Type:</strong> <span id="invType">-</span></p>
+                        <p><strong>Registration Date:</strong> <span id="regDate">-</span></p>
+                        <p><strong>Status:</strong> <span id="accountStatus">-</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Investment Details Section -->
+            <section id="inv-details" class="investment-section" style="display: none;">
+                <h2>Investment Details</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Share Information</div>
+                    <div class="card-body">
+                        <h3>10-Year Share Commitment</h3>
+                        <p style="margin: 1rem 0;">Your investment in Pilgrim shares is a 10-year commitment with the following benefits:</p>
+                        <ul style="margin: 1rem 0; padding-left: 2rem; line-height: 2;">
+                            <li>Yearly shareholder interest</li>
+                            <li>Monthly dividends paid at end of every calendar month</li>
+                            <li>Capital growth as Pilgrim continues to develop</li>
+                            <li>Priority access to new Pilgrim products</li>
+                            <li>Voting rights on major company decisions</li>
+                        </ul>
+                        
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: #e3f2fd; border-radius: 10px;">
+                            <h4>Your Current Holdings:</h4>
+                            <p><strong>Number of Shares:</strong> <span id="detailShares">0</span></p>
+                            <p><strong>Total Investment:</strong> <span id="detailInvestment">$0.00</span></p>
+                            <p><strong>Share Value:</strong> <span id="shareValue">$0.00</span> per share</p>
+                            <p><strong>Current Portfolio Value:</strong> <span id="portfolioValue">$0.00</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dividends Section -->
+            <section id="inv-dividends" class="investment-section" style="display: none;">
+                <h2>Dividend History</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Monthly Dividends</div>
+                    <div class="card-body">
+                        <p style="margin-bottom: 1rem;">Dividends are paid at the end of every calendar month based on your share holdings.</p>
+                        
+                        <div class="table-container">
+                            <table class="bank-table">
+                                <thead>
+                                    <tr>
+                                        <th>Month/Year</th>
+                                        <th>Shares</th>
+                                        <th>Dividend per Share</th>
+                                        <th>Total Dividend</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dividendTable">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">No dividend payments yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="inv-transactions" class="investment-section" style="display: none;">
+                <h2>Transaction History</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">All Transactions</div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="bank-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="invTransactionTable">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">No transactions yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Admin Section -->
+            <section id="inv-contact" class="investment-section" style="display: none;">
+                <h2>Contact Admin</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Send Message to Administrator</div>
+                    <div class="card-body">
+                        <form id="contactAdminForm">
+                            <div class="form-group">
+                                <label class="form-label">Your Name</label>
+                                <input type="text" class="form-input" id="contactName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Account Number</label>
+                                <input type="text" class="form-input" id="contactAccount" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Serial Number</label>
+                                <input type="text" class="form-input" id="contactSerial" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" id="contactEmail" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-input" id="contactMessage" rows="5" required></textarea>
+                            </div>
+                            
+                            <p style="margin: 1rem 0; font-size: 0.9rem; color: #666;">
+                                <strong>Note:</strong> Your message will be sent to: adeganglobal@gmail.com and pilgrimshares@gmail.com
+                            </p>
+                            
+                            <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="inv-profile" class="investment-section" style="display: none;">
+                <h2>My Profile</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Profile Information</div>
+                    <div class="card-body">
+                        <form id="invProfileForm">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-input" id="invProfileFullName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" id="invProfileEmail" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-input" id="invProfilePhone" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Account Number</label>
+                                <input type="text" class="form-input" id="invProfileAccountNumber" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Serial Number</label>
+                                <input type="text" class="form-input" id="invProfileSerialNumber" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <textarea class="form-input" id="invProfileAddress" readonly></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="changePassword()">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="investment-dashboard.js"></script>
+</body>
+</html>

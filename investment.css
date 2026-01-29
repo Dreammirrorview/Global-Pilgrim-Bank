@@ -1,0 +1,111 @@
+/* Pilgrim Investment Platform - Custom Styles */
+
+.investment-section {
+    display: block;
+}
+
+.investment-message {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin: 2rem 0;
+    color: white;
+}
+
+.investment-message p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Investment specific cards */
+.investment-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.investment-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.investment-card p {
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+/* Dividend highlighting */
+.dividend-positive {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.dividend-pending {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+/* Investment type badges */
+.investment-type-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.investment-type-badge.investment {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.investment-type-badge.shares {
+    background: #e8f5e9;
+    color: #4caf50;
+}
+
+.investment-type-badge.both {
+    background: #fff3e0;
+    color: #ff9800;
+}
+
+/* Share progress */
+.share-progress {
+    margin: 1rem 0;
+}
+
+.share-progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.share-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: width 0.3s;
+}
+
+/* Year counter */
+.year-counter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.year-label {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+}

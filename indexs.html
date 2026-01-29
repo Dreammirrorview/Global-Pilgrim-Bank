@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrim Investment Platform</title>
+    <link rel="stylesheet" href="banking.css">
+    <link rel="stylesheet" href="investment.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover-page" id="investmentCoverPage">
+        <div class="cover-content">
+            <div class="hero-section">
+                <h1 class="hero-title">Pilgrim Investment & Shares</h1>
+                <h2 class="hero-subtitle">Invest in Pilgrim for Future Achievements</h2>
+                
+                <div class="investment-message">
+                    <p style="font-size: 1.2rem; margin: 2rem 0; line-height: 1.8;">
+                        "Investment and Shares for Pilgrim user, invest in Pilgrim for future achievements, 
+                        buy shares today and benefit, the share is a ten years last share, with yearly 
+                        shareholders interest shares at the end of every calendar month, more details will 
+                        be send if apply".
+                    </p>
+                </div>
+
+                <div class="owner-section">
+                    <img src="../shared/assets/IMG_20251020_084318.jpg" alt="Olawale Abdul-Ganiyu" class="owner-photo">
+                    <div class="owner-info">
+                        <h3 class="owner-name">Olawale Abdul-Ganiyu Adeshina</h3>
+                        <p class="owner-title">Owner: O.A.A. Pilgrim</p>
+                        <p><strong>Partner:</strong> Pinetree Solution in partnership with Global Bank</p>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="register.html" class="btn btn-primary btn-large">Register for Investment</a>
+                    <a href="login.html" class="btn btn-success btn-large">Login to Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Pilgrim Investment Platform. All rights reserved.</p>
+        <p>Owned by O.A.A. Pilgrim in partnership with Pinetree Solution and Global Bank</p>
+    </div>
+
+    <script>
+        // Check if user is already logged in
+        function checkAuth() {
+            const user = localStorage.getItem('investmentUser');
+            if (user) {
+                window.location.href = 'dashboards.html';
+            }
+        }
+        
+        checkAuth();
+    </script>
+</body>
+</html>
