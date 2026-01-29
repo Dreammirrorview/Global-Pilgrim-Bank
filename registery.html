@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Pilgrim Customer Wallet</title>
+    <link rel="stylesheet" href="banking.css">
+    <link rel="stylesheet" href="wallet.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="bank-header">
+        <div class="bank-logo">
+            <img src="IMG_20251020_084318.jpg" alt="Pilgrim Wallet">
+            <span>Pilgrim Wallet</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="login.html" class="nav-link">Login</a>
+        </nav>
+    </div>
+
+    <div class="form-container">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Create Wallet Account</h2>
+        <form id="walletRegisterForm">
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" id="wltFullName" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" id="wltEmail" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" id="wltPhone" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-input" id="wltUsername" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input" id="wltPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-input" id="wltConfirmPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" required>
+                    I agree to the Terms and Conditions
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Create Account</button>
+        </form>
+
+        <p style="text-align: center; margin-top: 1rem;">
+            Already have an account? <a href="login.html" style="color: var(--primary-color);">Login here</a>
+        </p>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.getElementById('walletRegisterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('wltPassword').value;
+            const confirmPassword = document.getElementById('wltConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            const userData = {
+                fullName: document.getElementById('wltFullName').value,
+                email: document.getElementById('wltEmail').value,
+                phone: document.getElementById('wltPhone').value,
+                username: document.getElementById('wltUsername').value,
+                password: password,
+                accountNumber: Math.floor(1000000000 + Math.random() * 9000000000).toString(),
+                walletAddress: '0x' + Array.from({length: 40}, () => 
+                    Math.floor(Math.random() * 16).toString(16)
+                ).join(''),
+                balance: 0.00,
+                totalReceived: 0.00,
+                dateRegistered: new Date().toISOString(),
+                transactions: []
+            };
+
+            // Save to localStorage
+            localStorage.setItem('walletUser_' + userData.username, JSON.stringify(userData));
+            
+            alert('Registration successful! Your Wallet Account Number is: ' + userData.accountNumber + '\n\nWallet Address: ' + userData.walletAddress);
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

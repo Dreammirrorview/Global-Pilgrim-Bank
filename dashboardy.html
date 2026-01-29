@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pilgrim Customer Wallet</title>
+    <link rel="stylesheet" href="banking.css">
+    <link rel="stylesheet" href="wallet.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="bank-header">
+        <div class="bank-logo">
+            <img src="IMG_20251020_084318.jpg" alt="Pilgrim Wallet">
+            <span>Pilgrim Wallet</span>
+        </div>
+        <nav class="nav-menu">
+            <span style="color: white;">Welcome, <span id="walletUserName">User</span></span>
+            <a href="#" onclick="logout()" class="nav-link">Logout</a>
+        </nav>
+    </div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="sidebar-item active" onclick="showSection('wallet-overview')">Overview</li>
+                <li class="sidebar-item" onclick="showSection('wallet-send')">Send Money</li>
+                <li class="sidebar-item" onclick="showSection('wallet-receive')">Receive Money</li>
+                <li class="sidebar-item" onclick="showSection('wallet-transactions')">Transactions</li>
+                <li class="sidebar-item" onclick="showSection('wallet-profile')">Profile</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- Overview Section -->
+            <section id="wallet-overview" class="wallet-section">
+                <h2>Wallet Overview</h2>
+                
+                <div class="grid-2" style="margin-top: 2rem;">
+                    <div class="wallet-card">
+                        <div class="wallet-label">Wallet Balance</div>
+                        <div class="wallet-balance" id="walletBalance">$0.00</div>
+                        <div>Available Balance</div>
+                    </div>
+                    <div class="wallet-card" style="background: linear-gradient(135deg, #4caf50, #8bc34a);">
+                        <div class="wallet-label">Total Received</div>
+                        <div class="wallet-balance" id="totalReceived">$0.00</div>
+                        <div>From All Sources</div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Account Information</div>
+                    <div class="card-body">
+                        <p><strong>Account Number:</strong> <span id="walletAccountNumber">-</span></p>
+                        <p><strong>Wallet Address:</strong> <span id="walletAddress">-</span></p>
+                        <p><strong>Email:</strong> <span id="walletEmail">-</span></p>
+                        <p><strong>Phone:</strong> <span id="walletPhone">-</span></p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Quick Actions</div>
+                    <div class="card-body">
+                        <div class="grid-2">
+                            <button class="btn btn-primary btn-large" onclick="showSection('wallet-send')">Send Money</button>
+                            <button class="btn btn-success btn-large" onclick="showSection('wallet-receive')">Receive Money</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Send Money Section -->
+            <section id="wallet-send" class="wallet-section" style="display: none;">
+                <h2>Send Money</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Send to Wallet or Bank Account</div>
+                    <div class="card-body">
+                        <form id="walletSendForm">
+                            <div class="form-group">
+                                <label class="form-label">Send To</label>
+                                <select class="form-select" id="sendToType">
+                                    <option value="wallet">Wallet Address</option>
+                                    <option value="bank">Bank Account</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Recipient Wallet Address / Account Number</label>
+                                <input type="text" class="form-input" id="walletRecipient" required>
+                            </div>
+                            
+                            <div class="form-group" id="bankSelection" style="display: none;">
+                                <label class="form-label">Select Bank</label>
+                                <select class="form-select" id="walletSelectBank">
+                                    <option value="">Select a Bank</option>
+                                    <option value="044">Access Bank Nigeria Plc</option>
+                                    <option value="063">Diamond Bank Plc</option>
+                                    <option value="050">Ecobank Nigeria</option>
+                                    <option value="084">Enterprise Bank Plc</option>
+                                    <option value="070">Fidelity Bank Plc</option>
+                                    <option value="011">First Bank of Nigeria Plc</option>
+                                    <option value="214">First City Monument Bank</option>
+                                    <option value="058">Guaranty Trust Bank Plc</option>
+                                    <option value="301">Jaiz Bank</option>
+                                    <option value="082">Keystone Bank Ltd</option>
+                                    <option value="014">Mainstreet Bank Plc</option>
+                                    <option value="076">Skye Bank Plc</option>
+                                    <option value="039">Stanbic IBTC Plc</option>
+                                    <option value="232">Sterling Bank Plc</option>
+                                    <option value="032">Union Bank Nigeria Plc</option>
+                                    <option value="033">United Bank for Africa Plc</option>
+                                    <option value="215">Unity Bank Plc</option>
+                                    <option value="035">WEMA Bank Plc</option>
+                                    <option value="057">Zenith Bank International</option>
+                                    <option value="101">Providus Bank</option>
+                                    <option value="104">Parallex Bank Ltd</option>
+                                    <option value="303">Lotus Bank Ltd</option>
+                                    <option value="105">Premium Trust Bank Ltd</option>
+                                    <option value="106">Signature Bank Ltd</option>
+                                    <option value="103">Globus Bank</option>
+                                    <option value="102">Titan Trust Bank</option>
+                                    <option value="067">Polaris Bank</option>
+                                    <option value="107">Optimus Bank Ltd</option>
+                                    <option value="068">Standard Chartered Bank</option>
+                                    <option value="100">Suntrust Bank</option>
+                                    <option value="999">Adegan Global Bank (Our Bank)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="accountNameField" style="display: none;">
+                                <label class="form-label">Account Name</label>
+                                <input type="text" class="form-input" id="walletAccountName">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Amount (USD)</label>
+                                <input type="number" class="form-input" id="walletSendAmount" step="0.01" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-input" id="walletSendDescription">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success btn-large">Send Money</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Receive Money Section -->
+            <section id="wallet-receive" class="wallet-section" style="display: none;">
+                <h2>Receive Money</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Your Wallet Details</div>
+                    <div class="card-body">
+                        <div style="margin-bottom: 2rem;">
+                            <h3>Wallet Address</h3>
+                            <p style="word-break: break-all; font-family: monospace; background: #f5f5f5; padding: 1rem; margin: 1rem 0;" id="receiveWalletAddress">0x0000000000000000000000000000000000000000</p>
+                            <button class="btn btn-primary" onclick="copyWalletAddress()">Copy Address</button>
+                        </div>
+                        
+                        <div>
+                            <h3>Account Number</h3>
+                            <p style="word-break: break-all; font-family: monospace; background: #f5f5f5; padding: 1rem; margin: 1rem 0;" id="receiveAccountNumber">0000000000</p>
+                            <button class="btn btn-primary" onclick="copyAccountNumber()">Copy Account Number</button>
+                        </div>
+                        
+                        <div class="alert alert-info" style="margin-top: 2rem;">
+                            <strong>Note:</strong> You can receive money via wallet transfer or bank transfer using the details above.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transactions Section -->
+            <section id="wallet-transactions" class="wallet-section" style="display: none;">
+                <h2>Transaction History</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Recent Transactions</div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="bank-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Recipient/Sender</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="walletTransactionTable">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">No transactions yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="wallet-profile" class="wallet-section" style="display: none;">
+                <h2>My Profile</h2>
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">Profile Information</div>
+                    <div class="card-body">
+                        <form id="walletProfileForm">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-input" id="walletProfileFullName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" id="walletProfileEmail" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-input" id="walletProfilePhone" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Account Number</label>
+                                <input type="text" class="form-input" id="walletProfileAccountNumber" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Wallet Address</label>
+                                <input type="text" class="form-input" id="walletProfileAddress" readonly>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="changeWalletPassword()">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="wallet.js"></script>
+</body>
+</html>

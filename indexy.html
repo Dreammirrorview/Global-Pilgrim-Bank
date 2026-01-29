@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrim Customer Wallet</title>
+    <link rel="stylesheet" href="banking.css">
+    <link rel="stylesheet" href="wallet.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover-page" id="walletCoverPage">
+        <div class="cover-content">
+            <div class="hero-section">
+                <h1 class="hero-title">Pilgrim Customer Wallet</h1>
+                <h2 class="hero-subtitle">Send & Receive Money Worldwide</h2>
+                
+                <div class="wallet-features">
+                    <div class="grid-3" style="margin: 2rem 0;">
+                        <div class="card">
+                            <h3>✈️ International Transfers</h3>
+                            <p>Send money to friends and family anywhere in the world</p>
+                        </div>
+                        <div class="card">
+                            <h3>💳 Multiple Payment Methods</h3>
+                            <p>Use wallet transfers, bank transfers, or cards</p>
+                        </div>
+                        <div class="card">
+                            <h3>🔒 Secure Transactions</h3>
+                            <p>End-to-end encryption for all your transactions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-primary btn-large">Login</a>
+                    <a href="register.html" class="btn btn-success btn-large">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Pilgrim Customer Wallet. All rights reserved.</p>
+        <p>Powered by Global Bank Pilgrim & Pinetree Solution</p>
+    </div>
+
+    <script>
+        // Check if user is already logged in
+        function checkAuth() {
+            const user = localStorage.getItem('walletUser');
+            if (user) {
+                window.location.href = 'dashboard.html';
+            }
+        }
+        
+        checkAuth();
+    </script>
+</body>
+</html>
